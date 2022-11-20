@@ -22,9 +22,14 @@ int _printf(const char *format, ...)
 	while (format[i] != '\0')
 	len++, i++;
 
-	if (len > 0)
-	k =  format_checker(format, len);
+	if (len == 0)
+	{
+		write(1, "", 0);
+		return_val = 0;
+	}
 
+	if (len > 0)
+	k =  format_checker(format);
 
 	if (k == 0)
 	{
@@ -106,19 +111,15 @@ int printf_2(const char *c)
 * Return: int val
 */
 
-int format_checker(const char *p, int len)
+int format_checker(const char *p)
 {
 	int i;
-	int flag = 0;
 
-	for (i = 0; i < len; i++)
+	for (i = 0; p[i] != '\0'; i++)
 	{
 		if (p[i] == '%')
-		{
-			flag = 1;
-			return (flag);
-		}
+		return (1);
 	}
 
-	return (flag);
+	return (0);
 }
