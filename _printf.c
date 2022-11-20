@@ -1,7 +1,7 @@
 /**
 * _printf - function print some input types
 *@format: format specifiers
-*
+*@...: variable number of args
 * Return: int value
 */
 #include <stdarg.h>
@@ -10,7 +10,7 @@ int printf_1(char *c);
 int printf_2(const char *c);
 int format_checker(const char *p, int len);
 
-int _printf(const char *format,...)
+int _printf(const char *format, ...)
 {
 	int x, k;
 	int i, len = 0;
@@ -25,21 +25,21 @@ int _printf(const char *format,...)
 
 	if (len > 0)
 	k =  format_checker(format, len);
-	
- 
+
+
 	if (k == 0)
 	{
-		for(i = 0; format[i] != '\0'; i++)
-		return_val =  printf_2(&format[i]);
-	}	  
+		for (i = 0; format[i] != '\0'; i++)
+		(return_val = printf_2(&format[i]));
+	}
 
 
-	for (i = 0; i < len; i++) 
+	for (i = 0; i < len; i++)
 	{
 		if (format[i] == '%' && format[i + 1] == 'c')
 		{
 			x = va_arg(args, int);
-			return_val +=  printf_1((char *) &x);
+			(return_val += printf_1((char *) &x));
 		}
 
 		if (format[i] == '%' && format[i + 1] == '%')
@@ -50,7 +50,7 @@ int _printf(const char *format,...)
 		if (format[i] == '%' && format[i + 1] == 's')
 		{
 			ch = va_arg(args, char *);
-			return_val +=  printf_2(ch);
+			(return_val += printf_2(ch));
 		}
 
 
@@ -73,6 +73,7 @@ int _printf(const char *format,...)
 int printf_1(char *c)
 {
 	int flag = 0;
+
 	write(1, c, 1);
 
 	return (flag += 1);
@@ -89,15 +90,16 @@ int printf_1(char *c)
 int printf_2(const char *c)
 {
 	int flag = 0;
+
 	write(1, c, 1);
 	flag++;
-  
-	return(flag);
+
+	return (flag);
 }
 
-/** 
+/**
 * format_checker - checks if formatted printing is the goal
-*@format: format specifier
+*@p: format specifier
 *@len: length of format specifier
 *
 * Return: int val
@@ -107,13 +109,13 @@ int format_checker(const char *p, int len)
 {
 	int i;
 	int flag = 0;
-    
- 	for (i = 0; i < len; i++)
+
+	for (i = 0; i < len; i++)
 	{
 		if (p[i] == '%')
 		flag = 1;
-		return(flag);
+		return (flag);
 	}
-    
+
 	return (flag);
 }
