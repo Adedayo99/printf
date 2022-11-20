@@ -6,13 +6,12 @@
 */
 #include <stdarg.h>
 #include <unistd.h>
-int printf_1(char *c);
-int printf_2(const char *c);
-int format_checker(const char *p, int len);
+#include "main.h"
+
 
 int _printf(const char *format, ...)
 {
-	int x, k;
+	int x, k, j;
 	int i, len = 0;
 	char  *ch;
 	int return_val = 0;
@@ -39,18 +38,20 @@ int _printf(const char *format, ...)
 		if (format[i] == '%' && format[i + 1] == 'c')
 		{
 			x = va_arg(args, int);
-			(return_val += printf_1((char *) &x));
+			(return_val += printf_1(&x));
 		}
 
 		if (format[i] == '%' && format[i + 1] == '%')
 		{
 			write(1, "%", 1);
+			(return_val += 1);
 		}
 
 		if (format[i] == '%' && format[i + 1] == 's')
 		{
 			ch = va_arg(args, char *);
-			(return_val += printf_2(ch));
+			for (j = 0; ch[j] != '\0'; j++)
+			(return_val += printf_2(&ch[j]));
 		}
 
 
@@ -70,7 +71,7 @@ int _printf(const char *format, ...)
 * Return: int val
 */
 
-int printf_1(char *c)
+int printf_1(int *c)
 {
 	int flag = 0;
 
@@ -113,8 +114,10 @@ int format_checker(const char *p, int len)
 	for (i = 0; i < len; i++)
 	{
 		if (p[i] == '%')
-		flag = 1;
-		return (flag);
+		{
+			flag = 1;
+			return (flag);
+		}
 	}
 
 	return (flag);
