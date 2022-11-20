@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	int x, k;
 	int i, len = 0;
 	char  *ch;
-	int return_val;
+	int return_val = 0;
 	va_list args;
 
 	va_start(args, format);
@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 	if (k == 0)
 	{
 		for (i = 0; format[i] != '\0'; i++)
-		(return_val = printf_2(&format[i]));
+		(return_val += printf_2(&format[i]));
 	}
 
 
