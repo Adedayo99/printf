@@ -2,10 +2,10 @@
 #define MAIN_H
 
 int _printf(const char *format, ...);
-int printf_1(char *c);
-int printf_2(char *c);
-int format_checker(const char *p, int len);
-
+int printf_1(int *c);
+int printf_2(const char *c);
+int format_checker(const char *p);
+#include <string.h>
 
 
 
