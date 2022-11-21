@@ -14,6 +14,7 @@ int (*action_func(char s))(char *)
 	op_t ops[] = {
 		{'c', printf_1},
 		{'s', printf_2},
+		{'d', printf_2},
 		{'0', NULL}
 		};
 
