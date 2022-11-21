@@ -29,7 +29,7 @@ int printf_2(char *c)
 	int flag = 0;
 	while(c[i] != '\0')
 	{
-		write(1, c, 1);
+		write(1, &c[i], 1);
 		flag++;
 		i++;
 	}
