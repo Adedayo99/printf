@@ -62,6 +62,22 @@ int _printf(char *format, ...)
 			return_val += 1;
 		}
 
+		else if ((format[i] == '%' && format[i + 1] == 'd') 
+			|| (format[i] == '%' && format[i + 1] == 'i'))
+		{
+			char str[20];
+
+			x = va_arg(args, int);
+			sprintf(str, "%d", x);
+			func = action_func('d');
+			return_val += (*func)(str);
+		}			
+
+
+
+
+
+
 		else
 		{
 			exit(98);
