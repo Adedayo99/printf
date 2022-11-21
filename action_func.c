@@ -4,27 +4,28 @@
 *
 * Return: Appropriate function
 */
+#include "main.h"
 
-void (*action_func(char s))(char *)
+int (*action_func(char s))(char *)
 {
 
 	int i = 0;
 
 	op_t ops[] = {
-		{'c',      },
-		{'s',      },
-		{'d',      },
-		{'i',      }
-		{NULL, NULL}
+		{'c', printf_1},
+		{'s', printf_2},
+		{'0', NULL}
 		};
 
-	while (ops[i].op != NULL)
+
+	while (ops[i].op != '0')
 	{
 		if(ops[i].op == s)
-		return(ops[i].f);
+		return (ops[i].f);
 	i++;
 	}
 
+	
 	return (NULL);
 }
 

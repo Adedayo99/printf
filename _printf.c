@@ -9,58 +9,55 @@
 #include "main.h"
 
 
-int _printf(const char *format, ...)
+int _printf(char *format, ...)
 {
-	int x, k, j;
-	int i, len = 0;
+	int x;
+	int i = 0;
 	char  *ch;
 	int return_val = 0;
+	int (*func)(char *);
 	va_list args;
 
 	va_start(args, format);
 
 	while (format[i] != '\0')
-	len++, i++;
-
-	if (len == 0)
 	{
-		write(1, "", 0);
-		return_val = 0;
-	}
 
-	if (len > 0)
-	k =  format_checker(format);
+		if (format[i] != '%')
+		{
+			write(1, &format[i], 1);
+			return_val += 1;
+		}
 
-	if (k == 0)
-	{
-		for (i = 0; format[i] != '\0'; i++)
-		(return_val += printf_2(&format[i]));
-	}
-
-
-	for (i = 0; i < len; i++)
-	{
-		if (format[i] == '%' && format[i + 1] == 'c')
+		else if (format[i] == '%' && format[i + 1] == 'c')
 		{
 			x = va_arg(args, int);
-			(return_val += printf_1(&x));
+			func = action_func('c');
+			(*func)((char *) &x);
+
 		}
 
-		if (format[i] == '%' && format[i + 1] == '%')
+		else if (format[i] == '%' && format[i + 1] == 's')
+		{	
+			ch = va_arg(args, char *);
+			func = action_func('s');
+			(*func)(ch);
+			
+		}
+
+		else if (format[i] == '%' && format[i + 1] == '%')
 		{
 			write(1, "%", 1);
-			(return_val += 1);
+			return_val += 1;
 		}
 
-		if (format[i] == '%' && format[i + 1] == 's')
+		else
 		{
-			ch = va_arg(args, char *);
-			for (j = 0; ch[j] != '\0'; j++)
-			(return_val += printf_2(&ch[j]));
+			exit(98);
 		}
-
-
+		i++;
 	}
+
 
 	va_end(args);
 	return (return_val);
@@ -69,57 +66,4 @@ int _printf(const char *format, ...)
 
 
 
-/**
-* printf_1 - writes char to screen
-*@c: pointer to char
-*
-* Return: int val
-*/
 
-int printf_1(int *c)
-{
-	int flag = 0;
-
-	write(1, c, 1);
-
-	return (flag += 1);
-}
-
-
-/**
-* printf_2 - writed char to screen
-*@c: pointer to char
-*
-* Return: int val
-*/
-
-int printf_2(const char *c)
-{
-	int flag = 0;
-
-	write(1, c, 1);
-	flag++;
-
-	return (flag);
-}
-
-/**
-* format_checker - checks if formatted printing is the goal
-*@p: format specifier
-*@len: length of format specifier
-*
-* Return: int val
-*/
-
-int format_checker(const char *p)
-{
-	int i;
-
-	for (i = 0; p[i] != '\0'; i++)
-	{
-		if (p[i] == '%')
-		return (1);
-	}
-
-	return (0);
-}
