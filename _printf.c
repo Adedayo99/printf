@@ -11,13 +11,14 @@
 
 int _printf(char *format, ...)
 {
-	int x;
+	int x, j;
 	int i = 0;
 	char  *ch;
 	int return_val = 0;
 	int (*func)(char *);
 	va_list args;
-
+	char check[] = {"csdi"};
+	int exit_flag = 0;
 	va_start(args, format);
 
 	while (format[i] != '\0')
@@ -25,6 +26,16 @@ int _printf(char *format, ...)
 
 		if (format[i] != '%')
 		{
+			if (i > 0 && format[i - 1] == '%')
+			{
+				for (j = 0; check[j] != '\0'; j++)
+				{	if (format[i] == check[j])
+					exit_flag = 1;
+				}
+			}
+
+			if (exit_flag == 1)
+			break;
 			write(1, &format[i], 1);
 			return_val += 1;
 		}
@@ -33,7 +44,7 @@ int _printf(char *format, ...)
 		{
 			x = va_arg(args, int);
 			func = action_func('c');
-			(*func)((char *) &x);
+			return_val += (*func)((char *) &x);
 
 		}
 
@@ -41,8 +52,8 @@ int _printf(char *format, ...)
 		{	
 			ch = va_arg(args, char *);
 			func = action_func('s');
-			(*func)(ch);
-			
+			return_val += (*func)(ch);
+	
 		}
 
 		else if (format[i] == '%' && format[i + 1] == '%')
