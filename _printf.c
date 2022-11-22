@@ -20,6 +20,9 @@ int _printf(char *format, ...)
 	va_list args;
 	va_start(args, format);
 
+	if (format == NULL || args == NULL)
+	return(0);
+
 	while (format[i] != '\0')
 	{
 
@@ -73,6 +76,13 @@ int _printf(char *format, ...)
 			i++;
 		}
 
+		if (format[i] == '%' && format[i + 1] == 'S')
+		{
+			ch = va_arg(args, char *);
+			func = action_func('S');
+			return_val += (*func)(ch);
+			i++;
+		}
 
 
 

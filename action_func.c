@@ -12,9 +12,10 @@ int (*action_func(char s))(char *)
 	int i = 0;
 
 	op_t ops[] = {
-		{'c', printf_1},
-		{'s', printf_2},
-		{'d', printf_2},
+		{'c', printf_c},
+		{'s', printf_s},
+		{'d', printf_s},
+		{'S', printf_S},
 		{'0', NULL}
 		};
 
