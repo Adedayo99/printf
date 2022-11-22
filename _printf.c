@@ -84,7 +84,13 @@ int _printf(char *format, ...)
 			i++;
 		}
 
-
+		if (format[i] == '%' && format[i + 1] == 'p')
+		{
+			x = va_arg(args, int);
+			func1 = action_func1('p');
+			return_val += (*func1)(x);
+			i++;
+		}
 
 		i++;
 	}

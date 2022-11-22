@@ -45,6 +45,7 @@ int (*action_func1(char s))(int)
 
 	op_int_t funcs[] = {
 		{'b', to_binary},
+		{'p', printf_p},
 		{'0', NULL}
 		};
 

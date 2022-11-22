@@ -134,3 +134,50 @@ int printf_S(char *c)
 
 	return (flag);
 }
+
+/**
+* print_p - printing int with hexa base and 0x prepended
+*@a: input int
+*
+* Return: int val
+*/
+
+int printf_p(int a)
+{
+	int j, temp;
+	char h;
+	char str[100];
+	int flag = 0;
+
+	write(1, "0x", 2);
+	flag += 2;
+
+	for (j = 0; a != 0; j++)
+	{
+		temp = a % 16;
+			
+		if (temp < 10)
+		{
+			h = (48 + temp);
+			str[j] = h;
+		}
+
+		if (temp >= 10)
+		{
+			h = (55 + temp);
+			str[j] = h;
+		}
+				
+		a = a / 16;
+	
+	}
+
+	for (--j; j >= 0; j--)
+	{
+		write(1, &str[j], 1);
+		flag += 1;
+	}
+
+	return (flag);
+
+}
