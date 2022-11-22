@@ -3,14 +3,10 @@
 
 int main(void)
 {
-/*	char s = '7';
-	char *pt = "my name is\n";  */
-	_printf("%%\n");
-/*	_printf("%%\n"); 
-	_printf("dhdjrurhfuejej\n");
-	printf("%d", result); */
+	int count;
+	int res = 15489;
+	count = _printf("%b\n", res);
+	_printf("\n%d\n",count);	
 	return (0);
-	
-
 }
 

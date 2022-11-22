@@ -30,4 +30,29 @@ int (*action_func(char s))(char *)
 	return (NULL);
 }
 
-	
+/**
+* action func1 - function to recieve input and decide action
+*@s: input address
+*
+* Return: Appropriate function
+*/
+
+int (*action_func1(char s))(int)
+{
+
+	int i = 0;
+
+	op_int_t funcs[] = {
+		{'b', to_binary},
+		{'0', NULL}
+		};
+
+	while (funcs[i].op != '0')
+	{
+		if(funcs[i].op == s)
+		return(funcs[i].f);
+	i++;
+	}
+
+	return (NULL);
+}	

@@ -37,3 +37,36 @@ int printf_2(char *c)
 	return (flag);
 }
 
+/**
+* to_binary - convert unsigned int to binary
+*@a: input val
+*
+* Return: int val
+*/
+
+
+int to_binary(int a)
+{
+	int i, flag = 0;
+	char str[200];
+ 
+
+
+	for (i = 0; a != 0;  i++)
+	{
+		str[i] = a % 2;
+		a = a / 2;
+		sprintf(&str[i], "%d", str[i]);
+
+        }
+       
+
+	for (--i; i >= 0; i--)
+	{
+		write(1, &str[i], 1);
+		flag += 1;
+	}
+     
+	return (flag);
+	
+}

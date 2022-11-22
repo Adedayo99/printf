@@ -16,8 +16,9 @@ int _printf(char *format, ...)
 	char  *ch;
 	int return_val = 0;
 	int (*func)(char *);
+	int (*func1)(int);
 	va_list args;
-	char check[] = {"csdi"};
+	char check[] = {"csbdi"};
 	int exit_flag = 0;
 	va_start(args, format);
 
@@ -73,7 +74,12 @@ int _printf(char *format, ...)
 			return_val += (*func)(str);
 		}			
 
-
+		else if (format[i] == '%' && format[i + 1] == 'b')
+		{
+			x = va_arg(args, int);
+			func1 = action_func1('b');
+			return_val += (*func1)(x);
+		}
 
 
 
