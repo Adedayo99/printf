@@ -18,13 +18,13 @@ typedef struct op_int {
 
 
 int _printf(char *format, ...);
-int printf_1(char *c);
-int printf_2(char *c);
+int printf_c(char *c);
+int printf_s(char *c);
 int (*action_func(char s))(char *);
 int (*action_func1(char s))(int);
 int to_binary(int a);
-
-
+int printf_S(char *c);
+int printf_p(int a);
 
 
 
