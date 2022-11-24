@@ -3,7 +3,9 @@
 /************************* PRINT CHAR *************************/
 
 /**
-* print_char - Prints a char                                                                                                          ** @types: List a of arguments                                                                                                         ** Return: Number of chars printed
+* print_char - Prints a char
+* @types: list of arguments.
+* Return: Return number of chars printed.
 */
 int print_char(va_list types)
 {
