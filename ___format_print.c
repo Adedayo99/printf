@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include "main.h"
 #include <string.h>
+int flags_print(char *format, va_list args);
 
 int ___format_print(char *format, va_list args)
 {
@@ -18,11 +19,11 @@ int ___format_print(char *format, va_list args)
 
 	char *list_2 = "lh";
 
-	char *list_3 = "123456789.";
+	char *list_3 = "0123456789";
 
 	int i = 0;
 	int list_1_flag; = 0;
-/*	list_2_flag, list_3_flag = 0; */
+	int j;
 	int format_flag = 0;
 
 			
@@ -45,26 +46,14 @@ int ___format_print(char *format, va_list args)
 
 
 	if (list_1_flag == 1 && format_flag == 1)
-	list1_print(format, args);
+	flags_print(format, args);
 
-		/*	for (j = 0; list_2[j] != '\0'; j++)
-			{
-				if (format[i + 1] == list_2[j])
-				list_2_flag = 1;
-				format_flag = format_spec_check(format[i + 2]);
-			}
 
-			for (j = 0; list_3[j] != '\0'; j++)
-			{
-				if (format[i + 1] == list_3[j])
-				list_3_flag = 1;
-				format_flag = format_spec_check(format[i + 2]);
-			}  */
 		}
 		
 }
 
-int list1_print(char *format, va_list args)
+int flags_print(char *format, va_list args)
 {
 	int i;
 	char str[100];
@@ -187,7 +176,34 @@ int list1_print(char *format, va_list args)
 
 		x = va_arg(args, int);
 		sprintf(st, "%d", x);
-		write(1, &st, 1);
+		return_val += write(1, &st, 1);
 	}
 
 
+	if (*(format + 1) == '.' && (*(format + 3) == 'f'))
+	{
+		float y;
+		int i = 0;
+		char st[100];
+
+		for (i = 0; list_3[i] != '\0'; i++)
+		{	
+			if *(format + 2) == list_3[i];
+			break;
+		}
+
+		while (i > 0)
+		{
+			return_val += write(1, " ", 1);
+			i--;
+		}
+
+		y = va_arg(args, float);
+		sprintf(st, "%f", y);
+		return_val += write(1, &st, 1);
+
+	}
+
+
+	return (return_val);
+}

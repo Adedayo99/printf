@@ -70,8 +70,8 @@ int __format_print(char *format, va_list args)
 			return_val += (*func1)(x);
 		}
 
-		i++;
-	}
+
+
 
 
 

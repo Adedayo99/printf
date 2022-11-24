@@ -5,14 +5,18 @@
 * Return: int value
 */
 #include "main.h"
+#include <stdarg.h>
 
 int _printf(char *format, ...)
-{
+{	
+	int i = 0;
 	int return_val = 0;
-	int flag3, flag2;
+	int flag3 = 0;
+	int flag2 = 0;
 	va_list args;
-	va_start(args, format);
 	char *ptr;
+	va_start(args, format);
+
 
 	if (format == NULL || args == NULL)
 	return(0);
@@ -29,10 +33,10 @@ int _printf(char *format, ...)
 		{
 			ptr = &format[i];
 
-			flag3 = ___format_print(ptr, args);
+		/*	flag3 = ___format_print(ptr, args);
 			return_val += flag3;		
 			if (flag3 != 0)	
-			i += 2;
+			i += 2;		*/
 
 			if (flag3 == 0)
 			{		
@@ -42,8 +46,10 @@ int _printf(char *format, ...)
 				i += 1;
 			}
 
-			if (flag2 == 0)
-			return (NULL);
+		/*	if (flag2 == 0)
+			{
+			}	*/
+			
 
 		}
 
