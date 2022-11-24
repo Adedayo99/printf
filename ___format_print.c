@@ -154,4 +154,40 @@ int list1_print(char *format, va_list args)
 
 	if (*(format + 1) == '#' && (*(format + 2) == 'X'))
 	{
+		char st[100];
+		int temp;
+		int i = 0;
+		x = va_args(args, int);
+
+		while (x != 0)
+		{
+			temp = x % 16;
+
+			if (temp < 10)
+			st[i] = 48 + temp;
+
+			if (temp >= 10)
+			st[i] = 55 + temp;
+
+			x = x / 16;
+
+			i++;
+		}
+
+		return_val += write(1, "0X", 2);
+
+		for (--i; i>= 0; i--)
+		return_val += write(1, &st[i], 1);
+	}
+
+	if (*(format + 2) == '-')
+	{
+		char st[100];
+		int i = 0;
+
+		x = va_arg(args, int);
+		sprintf(st, "%d", x);
+		write(1, &st, 1);
+	}
+
 
