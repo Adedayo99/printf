@@ -18,6 +18,8 @@ typedef struct op_int {
 
 
 int _printf(char *format, ...);
+int __format_print(char *format, ...);
+int ___format_print(char *format, ...);
 int printf_c(char *c);
 int printf_s(char *c);
 int (*action_func(char s))(char *);
@@ -27,7 +29,7 @@ int printf_S(char *c);
 int printf_p(int a);
 
 
-
+int plus_flag_check(char *c, char* str);
 
 
 
