@@ -1,34 +1,35 @@
 #ifndef MAIN_H
 #define MAIN_H
-#include<stdlib.h>
-#include<stddef.h>
-#include <unistd.h>
+
+#include <stdarg.h>
 #include <stdio.h>
-typedef struct op {
-	char op;
-	int (*f)(char *);
+#include <unistd.h>
 
-	} op_t;
+/**
+* struct fmt - Struct op
+* @fmt: The format.
+* @fn: The function associated.
+*/
+struct fmt
+{
+char fmt;
+int (*fn)(va_list, char[], int, int, int, int);
+};
 
-typedef struct op_int {
-	char op;
-	int (*f)(int);
+/**
+* typedef struct fmt fmt_t - Struct op
+* @fmt: The format.
+* @fm_t: The function associated.
+*/
+typedef struct fmt fmt_t;
 
-	} op_int_t;
+int _printf(const char *format, ...);
+int _print(const char *fmt, int *i, va_list list);
 
+/* Funtions to print chars and strings */
 
-int _printf(char *format, ...);
-int printf_c(char *c);
-int printf_s(char *c);
-int (*action_func(char s))(char *);
-int (*action_func1(char s))(int);
-int to_binary(int a);
-int printf_S(char *c);
-int printf_p(int a);
-
-
-
-
-
+int print_char(va_list types);
+int print_string(va_list type);
+int print_percent(va_list types);
 
 #endif
