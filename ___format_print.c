@@ -12,18 +12,14 @@ int flags_print(char *format, va_list args);
 
 int ___format_print(char *format, va_list args)
 {
-	int x;
-
+	int j;
+	int return_val = 0;
 	char *list_1 = "+ #0-";
 	char *match_1 = "difoxX";
 
-	char *list_2 = "lh";
-
-	char *list_3 = "0123456789";
-
 	int i = 0;
-	int list_1_flag; = 0;
-	int j;
+	int list_1_flag = 0;
+
 	int format_flag = 0;
 
 			
@@ -46,17 +42,20 @@ int ___format_print(char *format, va_list args)
 
 
 	if (list_1_flag == 1 && format_flag == 1)
-	flags_print(format, args);
+	return_val += flags_print(format, args);
 
+	return(return_val);
 
-		}
 		
 }
 
 int flags_print(char *format, va_list args)
 {
 	int i;
+	int x;
 	char str[100];
+	int return_val = 0;
+	char *list_3 = "0123456789";
 
 	if (*(format + 1) == '+')
 	{
@@ -67,7 +66,7 @@ int flags_print(char *format, va_list args)
 		sprintf(str, "%d", x);
 
 		else
-		sprintf(str, "%f", x);
+		sprintf(str, "%f",(double) x);
 
 		for (i = 0; str[i] != '\0'; i++)
 		return_val += write(1, &str[i], 1);
@@ -84,10 +83,10 @@ int flags_print(char *format, va_list args)
 		sprintf(str, "%d", x);
 
 		else
-		sprintf(str, "%f", x);
+		sprintf(str, "%f",(double) x);
 
 		for (i = 0; str[i] != '\0'; i++)
-		returm_val += write(1, &str[i], 1);
+		return_val += write(1, &str[i], 1);
 	}
 
 	if (*(format + 1) == '#' && (*(format + 2) == 'o'))
@@ -118,7 +117,7 @@ int flags_print(char *format, va_list args)
 		char st[100];
 		int temp;
 		int i = 0;
-		x = va_args(args, int);
+		x = va_arg(args, int);
 
 		while (x != 0)
 		{
@@ -146,7 +145,7 @@ int flags_print(char *format, va_list args)
 		char st[100];
 		int temp;
 		int i = 0;
-		x = va_args(args, int);
+		x = va_arg(args, int);
 
 		while (x != 0)
 		{
@@ -172,7 +171,7 @@ int flags_print(char *format, va_list args)
 	if (*(format + 2) == '-')
 	{
 		char st[100];
-		int i = 0;
+
 
 		x = va_arg(args, int);
 		sprintf(st, "%d", x);
@@ -182,13 +181,13 @@ int flags_print(char *format, va_list args)
 
 	if (*(format + 1) == '.' && (*(format + 3) == 'f'))
 	{
-		float y;
+		double y;
 		int i = 0;
 		char st[100];
 
 		for (i = 0; list_3[i] != '\0'; i++)
 		{	
-			if *(format + 2) == list_3[i];
+			if (*(format + 2) == list_3[i])
 			break;
 		}
 
@@ -198,7 +197,7 @@ int flags_print(char *format, va_list args)
 			i--;
 		}
 
-		y = va_arg(args, float);
+		y = va_arg(args, double);
 		sprintf(st, "%f", y);
 		return_val += write(1, &st, 1);
 
