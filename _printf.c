@@ -26,7 +26,7 @@ printed_chars++;
 
 else
 {
-printed = _print(format, list,);
+printed = _print(format, list);
 
 if (printed == -1)
 return (-1);
