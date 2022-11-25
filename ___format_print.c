@@ -55,7 +55,6 @@ int flags_print(char *format, va_list args)
 	int x;
 	char str[500];
 	int return_val = 0;
-	char *list_3 = "0123456789";
 
 	if (*(format + 1) == '+')
 	{
