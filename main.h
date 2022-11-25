@@ -27,7 +27,7 @@ int (*action_func1(char s))(int);
 int to_binary(int a);
 int printf_S(char *c);
 int printf_p(int a);
-
+int flags_print(char *format, va_list args);
 
 
 
