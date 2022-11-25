@@ -70,7 +70,12 @@ int __format_print(char *format, va_list args)
 			return_val += (*func1)(x);
 		}
 
-
+		if (*format == '%' && *(format + 1) == 'r')
+		{	
+			ch = va_arg(args, char *);
+			func = action_func('r');
+			return_val += (*func)(ch);
+		}
 
 
 

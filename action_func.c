@@ -15,6 +15,7 @@ int (*action_func(char s))(char *)
 		{'c', printf_c},
 		{'s', printf_s},
 		{'d', printf_s},
+		{'r', rev_string},
 		{'S', printf_S},
 		{'0', NULL}
 		};

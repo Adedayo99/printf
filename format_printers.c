@@ -181,3 +181,32 @@ int printf_p(int a)
 	return (flag);
 
 }
+
+
+int  rev_string(char *s)
+{
+	int i = 0;
+	int count = 0;
+	char j;
+	int k = 0;
+	int return_val = 0;
+
+	while (s[i] != '\0')
+	{
+		count += 1;
+		i++;
+	}
+
+	for (i = 0; i < count / 2; i++)
+	{
+		j = s[i];
+		s[i] = s[count - i - 1];
+		s[count - i - 1] = j;
+	}
+
+	for (k = 0; s[k] != '\0'; k++)
+	return_val += write(1,&s[k], 1);
+
+	return (return_val);
+
+}
