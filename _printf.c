@@ -33,10 +33,10 @@ int _printf(char *format, ...)
 		{
 			ptr = &format[i];
 
-		/*	flag3 = ___format_print(ptr, args);
+			flag3 = ___format_print(ptr, args);
 			return_val += flag3;		
 			if (flag3 != 0)	
-			i += 2;		*/
+			i += 2;		
 
 			if (flag3 == 0)
 			{		
@@ -46,9 +46,9 @@ int _printf(char *format, ...)
 				i += 1;
 			}
 
-		/*	if (flag2 == 0)
+			if (flag2 == 0)
 			{
-			}	*/
+			}	
 			
 
 		}
