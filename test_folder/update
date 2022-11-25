@@ -1,4 +1,0 @@
-#!/bin/bash
-git add .
-git commit -m 'group project is fun'
-git push --set-upstream origin New_printf
